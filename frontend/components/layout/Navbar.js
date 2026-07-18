@@ -1,10 +1,13 @@
 'use client';
 
 import Link from 'next/link';
+import { FiSun, FiMoon } from 'react-icons/fi';
 import { useAuth } from '@/context/AuthContext';
+import { useTheme } from '@/context/ThemeContext';
 
 export default function Navbar() {
   const { user, loading } = useAuth();
+  const { theme, toggleTheme } = useTheme();
 
   return (
     <header
@@ -33,6 +36,24 @@ export default function Navbar() {
       </nav>
 
       <div style={{ display: 'flex', gap: '12px', alignItems: 'center' }}>
+        <button
+          onClick={toggleTheme}
+          aria-label="Toggle theme"
+          style={{
+            width: '36px',
+            height: '36px',
+            borderRadius: '50%',
+            border: '1px solid var(--border-color)',
+            background: 'transparent',
+            color: 'var(--text-primary)',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+          }}
+        >
+          {theme === 'dark' ? <FiSun size={16} /> : <FiMoon size={16} />}
+        </button>
+
         {!loading && user && (
           <Link
             href="/dashboard"
@@ -52,6 +73,7 @@ export default function Navbar() {
             {user.name?.[0]?.toUpperCase() || 'U'}
           </Link>
         )}
+
         {!loading && !user && (
           <>
             <Link href="/login" style={{ fontSize: '0.9rem', fontWeight: 500, color: 'var(--text-secondary)' }}>

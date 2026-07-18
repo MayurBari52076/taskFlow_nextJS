@@ -7,15 +7,39 @@ const strandVariants = {
   visible: (i) => ({
     pathLength: 1,
     opacity: 1,
-    transition: { pathLength: { duration: 1.8, delay: i * 0.15, ease: 'easeInOut' }, opacity: { duration: 0.3, delay: i * 0.15 } },
+    transition: {
+      pathLength: { duration: 1.8, delay: i * 0.15, ease: 'easeInOut' },
+      opacity: { duration: 0.3, delay: i * 0.15 },
+    },
   }),
+};
+
+// Gentle continuous float that kicks in once the draw-in animation has settled
+const driftAnimation = {
+  y: [0, -10, 0, 8, 0],
+  x: [0, 4, 0, -4, 0],
+};
+
+const driftTransition = {
+  duration: 8,
+  delay: 2.3,
+  repeat: Infinity,
+  ease: 'easeInOut',
 };
 
 export default function Braid() {
   const reduceMotion = useReducedMotion();
 
   return (
-    <svg viewBox="0 0 480 480" width="100%" height="100%" style={{ overflow: 'visible' }} aria-hidden="true">
+    <motion.svg
+      viewBox="0 0 480 480"
+      width="100%"
+      height="100%"
+      style={{ overflow: 'visible' }}
+      aria-hidden="true"
+      animate={reduceMotion ? undefined : driftAnimation}
+      transition={reduceMotion ? undefined : driftTransition}
+    >
       <motion.path
         d="M 60 40 C 220 120, 260 200, 60 240 C -140 280, -100 360, 60 440"
         stroke="var(--accent)"
@@ -49,6 +73,6 @@ export default function Braid() {
         initial={reduceMotion ? 'visible' : 'hidden'}
         animate="visible"
       />
-    </svg>
+    </motion.svg>
   );
 }
