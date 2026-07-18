@@ -12,7 +12,7 @@ import {
 } from 'react-icons/fi';
 import { FaGithub, FaTwitter, FaLinkedin } from 'react-icons/fa';
 import Navbar from '@/components/layout/Navbar';
-import Braid from '@/components/landing/Braid';
+import Braid from '@/components/landing/TaskStack';
 
 const FEATURES = [
   {

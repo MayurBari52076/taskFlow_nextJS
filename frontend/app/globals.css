@@ -20,15 +20,15 @@
 }
 
 [data-theme='dark'] {
-  --bg-primary: #0f1017;
-  --bg-secondary: #171826;
-  --bg-glass: rgba(23, 24, 38, 0.6);
+  --bg-primary: #000000;
+  --bg-secondary: #0a0a0a;
+  --bg-glass: rgba(10, 10, 10, 0.6);
   --text-primary: #f2f2f7;
   --text-secondary: #9a9db3;
   --border-color: rgba(255, 255, 255, 0.08);
   --accent: #8b7dff;
   --accent-soft: rgba(139, 125, 255, 0.16);
-  --shadow-glass: 0 8px 32px rgba(0, 0, 0, 0.35);
+  --shadow-glass: 0 8px 32px rgba(0, 0, 0, 0.6);
 }
 
 * {
