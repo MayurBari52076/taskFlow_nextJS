@@ -1,0 +1,83 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+:root {
+  /* Light theme */
+  --bg-primary: #f7f8fc;
+  --bg-secondary: #ffffff;
+  --bg-glass: rgba(255, 255, 255, 0.6);
+  --text-primary: #12141d;
+  --text-secondary: #5b5f73;
+  --border-color: rgba(18, 20, 29, 0.08);
+  --accent: #6355ff;
+  --accent-soft: rgba(99, 85, 255, 0.12);
+  --success: #1fb975;
+  --danger: #ff5c5c;
+  --warning: #ffb020;
+  --radius-sm: 10px;
+  --radius-md: 16px;
+  --radius-lg: 24px;
+  --shadow-glass: 0 8px 32px rgba(18, 20, 29, 0.08);
+}
+
+[data-theme='dark'] {
+  --bg-primary: #0f1017;
+  --bg-secondary: #171826;
+  --bg-glass: rgba(23, 24, 38, 0.6);
+  --text-primary: #f2f2f7;
+  --text-secondary: #9a9db3;
+  --border-color: rgba(255, 255, 255, 0.08);
+  --accent: #8b7dff;
+  --accent-soft: rgba(139, 125, 255, 0.16);
+  --shadow-glass: 0 8px 32px rgba(0, 0, 0, 0.35);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  font-family: 'Inter', system-ui, sans-serif;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+}
+
+/* Reusable glass surface — used across cards, navbars, modals */
+.glass-surface {
+  background: var(--bg-glass);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-glass);
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}

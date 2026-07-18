@@ -1,0 +1,30 @@
+{
+  "name": "taskflow-frontend",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "next": "^15.0.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "axios": "^1.7.2",
+    "react-hook-form": "^7.52.1",
+    "framer-motion": "^11.3.8",
+    "react-icons": "^5.2.1",
+    "chart.js": "^4.4.3",
+    "react-chartjs-2": "^5.2.0",
+    "socket.io-client": "^4.7.5"
+  },
+  "devDependencies": {
+    "eslint": "^8.57.0",
+    "eslint-config-next": "^15.0.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
