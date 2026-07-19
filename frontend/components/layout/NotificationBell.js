@@ -1,16 +1,16 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
-import { FiBell } from 'react-icons/fi';
+import { FiBell, FiUserPlus, FiMessageCircle, FiPaperclip, FiCheckCircle, FiFlag } from 'react-icons/fi';
 import { getSocket } from '@/services/socket';
 import { listNotifications, markNotificationRead, markAllNotificationsRead } from '@/services/notificationService';
 
-const TYPE_LABELS = {
-  invitation: '🤝',
-  message: '💬',
-  file_upload: '📁',
-  task_completed: '✅',
-  task_assigned: '📌',
+const TYPE_CONFIG = {
+  invitation: { icon: FiUserPlus, color: 'var(--success)' },
+  message: { icon: FiMessageCircle, color: 'var(--accent)' },
+  file_upload: { icon: FiPaperclip, color: 'var(--accent)' },
+  task_completed: { icon: FiCheckCircle, color: 'var(--success)' },
+  task_assigned: { icon: FiFlag, color: 'var(--warning)' },
 };
 
 export default function NotificationBell() {
@@ -118,29 +118,46 @@ export default function NotificationBell() {
             <p style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', padding: '8px 0' }}>You're all caught up.</p>
           )}
 
-          {notifications.map((n) => (
-            <div
-              key={n._id}
-              onClick={() => handleItemClick(n)}
-              style={{
-                display: 'flex',
-                gap: '8px',
-                padding: '8px',
-                borderRadius: 'var(--radius-sm)',
-                background: n.read ? 'transparent' : 'var(--accent-soft)',
-                cursor: 'pointer',
-                marginBottom: '4px',
-              }}
-            >
-              <span style={{ fontSize: '1rem' }}>{TYPE_LABELS[n.type] || '🔔'}</span>
-              <div style={{ flex: 1 }}>
-                <div style={{ fontSize: '0.8rem' }}>{n.message}</div>
-                <div style={{ fontSize: '0.7rem', color: 'var(--text-secondary)' }}>
-                  {new Date(n.createdAt).toLocaleString([], { dateStyle: 'medium', timeStyle: 'short' })}
+          {notifications.map((n) => {
+            const config = TYPE_CONFIG[n.type] || { icon: FiBell, color: 'var(--text-secondary)' };
+            const Icon = config.icon;
+            return (
+              <div
+                key={n._id}
+                onClick={() => handleItemClick(n)}
+                style={{
+                  display: 'flex',
+                  gap: '8px',
+                  padding: '8px',
+                  borderRadius: 'var(--radius-sm)',
+                  background: n.read ? 'transparent' : 'var(--accent-soft)',
+                  cursor: 'pointer',
+                  marginBottom: '4px',
+                }}
+              >
+                <div
+                  style={{
+                    width: '28px',
+                    height: '28px',
+                    borderRadius: '50%',
+                    background: 'var(--accent-soft)',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    flexShrink: 0,
+                  }}
+                >
+                  <Icon size={14} color={config.color} />
+                </div>
+                <div style={{ flex: 1 }}>
+                  <div style={{ fontSize: '0.8rem' }}>{n.message}</div>
+                  <div style={{ fontSize: '0.7rem', color: 'var(--text-secondary)' }}>
+                    {new Date(n.createdAt).toLocaleString([], { dateStyle: 'medium', timeStyle: 'short' })}
+                  </div>
                 </div>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       )}
     </div>

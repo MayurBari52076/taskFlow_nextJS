@@ -24,7 +24,7 @@ export default function DashboardPage() {
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
       <div>
-        <h1 style={{ fontSize: '1.5rem', fontWeight: 700 }}>Welcome back{user?.name ? `, ${user.name}` : ''} 👋</h1>
+        <h1 style={{ fontSize: '1.5rem', fontWeight: 700 }}>Welcome back{user?.name ? `, ${user.name}` : ''}</h1>
         <p style={{ color: 'var(--text-secondary)' }}>Here's what's happening across your tasks.</p>
       </div>
 
